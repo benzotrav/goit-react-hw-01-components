@@ -5,6 +5,8 @@ import data from "../path/data";
 import getRandomHexColor from 'utils/randomColor';
 import { FriendList } from './FriendList/FriendList';
 import friends from "../path/friends";
+import { TransactionHistory } from './TransactionHistory/TransactionHistory';
+import transactions from "../path/transactions";
 
 
 
@@ -28,6 +30,7 @@ export const App = () => {
 
         <Statistics title={'title'} stats={data} colorFn={getRandomHexColor} />      
         <FriendList friends={friends} />
+        <TransactionHistory transactions={transactions} />
     </div>
   );
 };
