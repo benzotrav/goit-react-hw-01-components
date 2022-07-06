@@ -1,41 +1,32 @@
 import PropTypes from 'prop-types';
+import { 
+    StatisticsWrap, 
+    StatisticsTitle,
+    StatsList,
+    ListItem,
+    ItemLable,
+    ItemPercentage,
+   } from './Statistics-styled';
 
 
 
 
 
 
-export const Statistics = ({ title, stats }) => {
+export const Statistics = ({ title, stats, colorFn }) => {
     return (
         <StatisticsWrap>
-            <TitleInfo>
-            <StatisticsTitle>UPLOAD STATS</StatisticsTitle>            
-            </TitleInfo>
-
+            {title && <StatisticsTitle>{title}</StatisticsTitle>}
 
             <StatsList>
-                <StatsItem>
-                    <StatsTitle></StatsTitle>
-                    <StatsInfo></StatsInfo>
-                </StatsItem>
-                    <StatsTitle></StatsTitle>
-                    <StatsInfo></StatsInfo>
-
-                <StatsItem>
-                    <StatsTitle></StatsTitle>
-                    <StatsInfo></StatsInfo>
-                </StatsItem>
-
-                <StatsItem>
-                    <StatsTitle></StatsTitle>
-                    <StatsInfo></StatsInfo>
-                </StatsItem>
-
-                <StatsItem>
-                    <StatsTitle></StatsTitle>
-                    <StatsInfo></StatsInfo>
-                </StatsItem>
-
+            {stats.map(({ id, label, percentage }) => {
+          return (
+            <ListItem key={id} colorFn={colorFn}>
+              <ItemLable>{label}</ItemLable>
+              <ItemPercentage>{percentage}%</ItemPercentage>
+            </ListItem>
+          );
+        })}
             </StatsList>
             
         </StatisticsWrap>
@@ -44,7 +35,13 @@ export const Statistics = ({ title, stats }) => {
 
 
 Statistics.propTypes = {
-    title: PropTypes.string.isRequired,
-    stats: PropTypes.string.isRequired,
-    stats: PropTypes.objectOf(PropTypes.number),
+    title: PropTypes.string,
+    colorFn: PropTypes.func,
+    stats: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        percentage: PropTypes.number.isRequired,
+      })
+    ),
   };
