@@ -3,6 +3,8 @@ import  user  from '../path/user';
 import { Statistics } from './Statistics/Statistics';
 import data from "../path/data";
 import getRandomHexColor from 'utils/randomColor';
+import { FriendList } from './FriendList/FriendList';
+import friends from "../path/friends";
 
 
 
@@ -24,7 +26,8 @@ export const App = () => {
         stats={user.stats}
       />
 
-        <Statistics title={'title'} stats={data} colorFn={getRandomHexColor} />
+        <Statistics title={'title'} stats={data} colorFn={getRandomHexColor} />      
+        <FriendList friends={friends} />
     </div>
   );
 };
